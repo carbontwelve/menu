@@ -1,0 +1,23 @@
+{
+    "name": "carbontwelve/menu",
+    "description": "Platform Agnostic menu class",
+    "authors": [
+        {
+            "name": "Simon Dann",
+            "email": "simon.dann@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "illuminate/support": "4.0.x"
+    },
+    "autoload": {
+        "classmap": [
+            "src/migrations"
+        ],
+        "psr-0": {
+            "Carbontwelve\\Menu": "src/"
+        }
+    },
+    "minimum-stability": "dev"
+}
