@@ -69,7 +69,7 @@ class Node implements MenuNodeInterface {
     }
 
     /**
-     * Attribute Getter
+     * Attribute Atomic Getter
      *
      * @param null|string $name
      * @return mixed
@@ -80,6 +80,21 @@ class Node implements MenuNodeInterface {
         if ( is_null($name) ){ throw new InvalidNodeAttributeException( "[$name] can not be null" ); }
 
         return $this->attributes[$name];
+    }
+
+    /**
+     * Attribute Getter
+     *
+     * @return array
+     */
+    public function getAttributes()
+    {
+        return $this->attributes;
+    }
+
+    public function getName()
+    {
+        return $this->name;
     }
 
 

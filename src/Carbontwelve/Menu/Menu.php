@@ -65,9 +65,10 @@ class Menu implements MenuInterface
      * @return $this
      * @throws InvalidNodeException
      */
-    public function setNodes (array $nodes)
+    public function setNodes ($nodes = null)
     {
-        if ( ! is_array($nodes)){ throw new InvalidNodeException( 'Invalid input, was not an array' );}
+        if ( is_null($nodes) ){ return $this; }
+        if ( ! is_array($nodes) ){ throw new InvalidNodeException( 'Invalid input, was not an array' );}
 
         $this->nodes = $nodes;
         return $this;
@@ -112,6 +113,7 @@ class Menu implements MenuInterface
      */
     public function render()
     {
+        //return $this->nodes;
         return $this->renderer->compile($this->nodes);
     }
 

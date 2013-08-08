@@ -21,11 +21,33 @@ and add the following to the `aliases` array:
 Once complete you will be able to do something like the following to be able to see things.
 
     Menu::setNodes(Menu::getNodes())
-        ->registerNode('Test')
-        ->setIcon('user')
-        ->addItem('Users');
+            ->registerNode('Dashboard')
+                ->setAttribute('id', 'dashboard-menu')
+                ->setAttribute('class', 'nav nav-stacked')
+                ->addNode('Users')
+                    ->setAttribute('value', 'Dashboard')
+                    ->setAttribute('title', 'Click to go to your dashboard')
+                    ->setAttribute('href', '#');
 
+        $menu = Menu::setNodes(Menu::getNodes());
+
+        $node = $menu->registerNode('Users');
+        $node->addNode('User list')
+            ->setAttribute('value', 'User list')
+            ->setAttribute('title', 'Click to go to your dashboard')
+            ->setAttribute('href', '#');
+        $node->addNode('New User')
+            ->setAttribute('value', 'New User')
+            ->setAttribute('title', 'Click to add a new user')
+            ->setAttribute('href', '#');
+        $node->addNode('Location List')
+            ->setAttribute('value', 'Location List')
+            ->setAttribute('title', 'Click to view user locations')
+            ->setAttribute('href', '#');
+
+    header('Content-Type: text/plain');
     print_r(Menu::render());
+    exit();
 
 Changelog
 ====

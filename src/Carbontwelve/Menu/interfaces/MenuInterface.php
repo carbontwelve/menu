@@ -20,7 +20,7 @@ interface MenuInterface {
      * @return $this
      * @throws InvalidNodeException
      */
-    public function setNodes (array $nodes);
+    public function setNodes ($nodes = null);
 
     /**
      * Node Getter
