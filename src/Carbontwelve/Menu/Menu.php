@@ -17,7 +17,7 @@
  */
 
 use Carbontwelve\Menu\Interfaces\MenuInterface;
-use Carbontwelve\Menu\Renderers\Html as DefaultRenderDriver;
+use Carbontwelve\Menu\RenderEngines\Html as DefaultRenderDriver;
 use Carbontwelve\Menu\Interfaces\RendererDriverInterface;
 use Carbontwelve\Menu\Interfaces\RendererInterface;
 
@@ -32,7 +32,7 @@ class Menu implements MenuInterface
     /** @var \Carbontwelve\Menu\Components\Renderer */
     protected $renderer;
 
-    /** @var \Carbontwelve\Menu\Renderers\Html */
+    /** @var \Carbontwelve\Menu\RenderEngines\Html */
     protected $renderDriver;
 
     public function __construct(
@@ -63,9 +63,12 @@ class Menu implements MenuInterface
      *
      * @param array $nodes
      * @return $this
+     * @throws InvalidNodeException
      */
     public function setNodes (array $nodes)
     {
+        if ( ! is_array($nodes)){ throw new InvalidNodeException( 'Invalid input, was not an array' );}
+
         $this->nodes = $nodes;
         return $this;
     }
@@ -78,6 +81,30 @@ class Menu implements MenuInterface
     public function getNodes()
     {
         return $this->nodes;
+    }
+
+    /**
+     * Renderer Setter
+     *
+     * @param RendererDriverInterface $renderDriver
+     * @return $this
+     */
+    public function setRenderer(RendererDriverInterface $renderDriver)
+    {
+        $this->renderDriver = $renderDriver;
+        return $this;
+    }
+
+    /**
+     * Renderer getter
+     *
+     * Default renderer is Html
+     *
+     * @return \Carbontwelve\Menu\RenderEngines\Html
+     */
+    public function getRenderer()
+    {
+        return $this->renderDriver;
     }
 
     /**
