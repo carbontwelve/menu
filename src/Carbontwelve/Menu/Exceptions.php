@@ -15,3 +15,4 @@
 class InvalidNodeAttributeException extends \Exception {};
 class InvalidNodeOrderException extends  \Exception {};
 class InvalidNodeException extends  \Exception {};
+class InvalidNodeNameException extends  \Exception {};

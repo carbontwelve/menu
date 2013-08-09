@@ -74,6 +74,15 @@ class Menu implements MenuInterface
         return $this;
     }
 
+    public function appendNodes ($nodes = null)
+    {
+        if ( is_null($nodes) ){ return $this; }
+        if ( ! is_array($nodes) ){ throw new InvalidNodeException( 'Invalid input, was not an array' );}
+
+        $this->nodes = array_merge ($this->nodes, $nodes);
+        return $this;
+    }
+
     /**
      * Node Getter
      *

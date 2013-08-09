@@ -13,6 +13,7 @@
 use Carbontwelve\Menu\Interfaces\MenuNodeInterface;
 use Carbontwelve\Menu\InvalidNodeAttributeException;
 use Carbontwelve\Menu\InvalidNodeOrderException;
+use Carbontwelve\Menu\InvalidNodeNameException;
 
 class Node implements MenuNodeInterface {
 
@@ -21,8 +22,13 @@ class Node implements MenuNodeInterface {
     protected $attributes = array();
     public $nodes = array();
 
-    public function __construct($name)
+    public function __construct($name = null)
     {
+        if (is_null($name)){ throw new InvalidNodeNameException('$name can not be null');}
+        if (empty($name)){ throw new InvalidNodeNameException('$name can not be empty');}
+
+        if ( ! is_string($name)){ throw new InvalidNodeNameException('$name must be of type cast string');}
+
         $this->name = $name;
     }
 
@@ -63,6 +69,7 @@ class Node implements MenuNodeInterface {
     public function setAttribute($name = null, $value = null)
     {
         if ( is_null($name) ){ throw new InvalidNodeAttributeException( "[$name] can not be null" ); }
+        if ( empty($name) ){ throw new InvalidNodeAttributeException( "[$name] can not be empty" ); }
 
         $this->attributes[$name] = $value;
         return $this;
@@ -82,6 +89,13 @@ class Node implements MenuNodeInterface {
         return $this->attributes[$name];
     }
 
+    public function unsetAttribute($name = null)
+    {
+        if ( is_null($name) ){ throw new InvalidNodeAttributeException( "[$name] can not be null" ); }
+        unset($this->attributes[$name]);
+        return (isset($this->attributes[$name]));
+    }
+
     /**
      * Attribute Getter
      *
@@ -96,6 +110,4 @@ class Node implements MenuNodeInterface {
     {
         return $this->name;
     }
-
-
 }

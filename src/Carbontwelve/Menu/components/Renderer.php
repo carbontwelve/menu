@@ -1,11 +1,11 @@
 <?php namespace Carbontwelve\Menu\Components;
 /**
  * --------------------------------------------------------------------------
- * Carbontwelve\Menu\Renderer
+ * Carbontwelve\Menu\RenderFactory
  * --------------------------------------------------------------------------
  *
  * @package  Carbontwelve\Menu
- * @category Renderer
+ * @category Factory
  * @version  1.0.0
  * @author   Simon Dann <simon.dann@gmail.com>
  */
